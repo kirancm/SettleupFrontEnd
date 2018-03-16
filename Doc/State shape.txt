@@ -1,0 +1,28 @@
+
+{
+	Payments : {
+		isFetching: false,
+		didInvalidate: false,
+		items : [{
+			id:01,
+			who:"",
+			whom:"",
+			amount:"",
+			desc:"",
+			date:""	
+		},
+		{
+			id:01,
+			who:"",
+			whom:"",
+			amount:"",
+			desc:"",
+			date:""
+		}]
+	},
+members:{
+	isFetching:false,
+	items:[]
+},
+memberFilter:"All"
+}

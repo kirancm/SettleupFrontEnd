@@ -1,5 +1,7 @@
 import { PropTypes, Component } from 'react'
-import {Menu} from './Menu';
+import {Menu} from '../components/Menu';
+import { connect } from 'react-redux'
+import { addPayment } from '../actions'
 
 const members = [
 	"kiran",
@@ -38,42 +40,31 @@ class Autocomplete extends Component {
 
 
 
-export const NewPayment = (props) => {
+const AddPayment = ({dispatch}) => {
 	
 	let _who, _towhom, _amount, _description
 
 	const submit = (e) => {
+			e.preventDefault();
+			var currentDate = new Date().toISOString().substring(0, 10);
+			var d = new Date,
+			currentDate = [d.getFullYear(),
+						d.getMonth()+1,
+						d.getDate()].join('-')+' '+
+						[d.getHours(),
+						d.getMinutes(),
+						d.getSeconds()].join(':');
 
-		e.preventDefault();
+			var data = {
+				"id":Math.random(1,100),
+				"who":  _who.value,
+				"towhom": _towhom.value,
+				"amount": parseInt(_amount.value),
+				"description": _description.value,
+				"paymentdate" : currentDate
+			}
 
-		var currentDate = new Date().toISOString().substring(0, 10);
-
-		var d = new Date,
-        currentDate = [d.getFullYear(),
-        			   d.getMonth()+1,
-		               d.getDate()].join('-')+' '+
-		              [d.getHours(),
-		               d.getMinutes(),
-		               d.getSeconds()].join(':');
-
-		var data = {
-	    	"who":  _who.value,
-	    	"towhom": _towhom.value,
-	    	"amount": parseInt(_amount.value),
-	    	"description": _description.value,
-	    	"paymentdate" : currentDate
-  		}
-
-  		fetch('http://localhost:4000/addPayment', {
-			  method: 'POST',
-			  headers: {
-			    'Accept': 'text/html',
-			    'Content-Type': 'text/html',
-			  },
-			  body: data
-		}).then((responseJson) => {
-       		window.location = "http://localhost:3000/#/playment-list";
-		  })
+			dispatch(addPayment(data))
 		}
 
 	return (
@@ -113,4 +104,7 @@ export const NewPayment = (props) => {
 		</div>
 	)
 }
+
+
+export default connect()(AddPayment)
 
