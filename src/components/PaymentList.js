@@ -11,6 +11,7 @@ import memberFilter from '../containers/memberFilter';
 const PaymentList = ({payments,deletePayment}) => (
 	<div className="row paymentList">
 		<Menu />	
+		{payments.isFetching? <div>Loading.......</div>:null}
 		  {payments.items.map((payment, i) =>
 					  <Payment key={i}
 							   {...payment} 
