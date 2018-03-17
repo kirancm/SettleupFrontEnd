@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './stylesheets/ui.scss'
 import './stylesheets/index.scss'
 import meberPaymentList from './containers/memberPaymentList';
 import Summery from './components/Summery';
@@ -33,7 +32,6 @@ ReactDOM.render(
 		<Router history={hashHistory}>
 			<Route path="/" component={Summery}/>
 			<Route path="playment-list" component={meberPaymentList} />
-			<Route path="add-payment" component={AddPayment} />
 			<Route path="*" component={Whoops404}/>
 		</Router>
 	</Provider>,

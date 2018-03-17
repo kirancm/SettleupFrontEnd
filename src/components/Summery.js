@@ -1,8 +1,9 @@
+import './Summery.scss'
 import { Component } from 'react'
-import '../stylesheets/ui.scss'
 import Rupee from 'react-icons/lib/fa/inr'
 import React from 'react';
-import {Menu} from './Menu';
+import {Header} from './Header';
+import AddPayment from '../containers/AddPayment'
 
 
 
@@ -68,7 +69,6 @@ class Summery extends React.Component {
    
 
 	render() {
-		debugger
 		let members = Object.keys(this.state.summery);
 		var MemberSummerys = members.map((key) => {
 		    return <MemberSummery name={key} amount={this.state.summery[key]} />
@@ -76,7 +76,8 @@ class Summery extends React.Component {
 
 		return (
 			<div className="summery">
-				<Menu />
+				<Header />
+				<AddPayment />
 				{MemberSummerys}
 			</div>
 		)

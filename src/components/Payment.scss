@@ -1,0 +1,25 @@
+.payment{
+    background-color: white;
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 9px;
+    padding: 15px;
+
+   .who {
+      font-size: 22px;
+      .name{
+        text-transform: capitalize;
+      }
+   }
+   .deleteIcon{
+      font-size: 28px;
+   }
+   .description{
+      padding-top: 5px;
+      clear: both;
+   }
+   .towhom{
+      padding-top: 5px;
+      font-size: 17px;
+   }
+}; 

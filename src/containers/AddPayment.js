@@ -1,7 +1,10 @@
+import './AddPayment.scss'
 import { PropTypes, Component } from 'react'
-import {Menu} from '../components/Menu';
 import { connect } from 'react-redux'
 import { addPayment } from '../actions'
+import { showPaymentModal, hideAddPaymentModal} from '../actions/uiActions'
+import { Modal,Button  } from 'react-bootstrap';
+import Plus from 'react-icons/lib/fa/plus'
 
 const members = [
 	"kiran",
@@ -39,11 +42,9 @@ class Autocomplete extends Component {
 }
 
 
-
-const AddPayment = ({dispatch}) => {
-	
+const AddPayment = (props) => {
+	console.log("props.showAddPaymentModal" + props.showAddPaymentModal);
 	let _who, _towhom, _amount, _description
-
 	const submit = (e) => {
 			e.preventDefault();
 			var currentDate = new Date().toISOString().substring(0, 10);
@@ -64,13 +65,23 @@ const AddPayment = ({dispatch}) => {
 				"paymentdate" : currentDate
 			}
 
-			dispatch(addPayment(data))
+			props.addPayment(data);
+			props.hideModal();
 		}
 
 	return (
 		<div className="addPayment">
-			<Menu />
-			<form onSubmit={submit} className="addPaymentForm">
+			<div className="appPaymentButton">
+				<a onClick={props.showModal}>
+					<Plus />
+				</a>
+			</div>
+			<Modal show={props.showAddPaymentModal} onHide={props.hideModal}>
+				<Modal.Header closeButton>
+					<Modal.Title>ADD NEW PAYMENT</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>
+				<form onSubmit={submit} className="addPaymentForm">
 				<div className="form-group">
 					<label htmlFor="who">Who</label>
 					<Autocomplete id="whoList" options={members}
@@ -101,10 +112,27 @@ const AddPayment = ({dispatch}) => {
 
 				<button className="btn btn-primary">Add Day</button>
 			</form>
+			</Modal.Body>
+			<Modal.Footer>
+				<Button onClick={props.hideModal}>Close</Button>
+			</Modal.Footer>
+        	</Modal>
 		</div>
 	)
 }
 
+const mapStateToProps = state => ({
+    showAddPaymentModal: state.showAddPaymentModal, 
+  })
+   
+const mapDispatchToProps = dispatch => ({
+	showModal: () => dispatch(showPaymentModal()),
+	hideModal: () => dispatch(hideAddPaymentModal()),
+	addPayment: (data) => dispatch(addPayment(data))
+})
 
-export default connect()(AddPayment)
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(AddPayment)
 

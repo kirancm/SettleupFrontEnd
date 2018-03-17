@@ -1,0 +1,26 @@
+.header {
+    background-color: saddlebrown;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: .5em;
+    justify-content: space-around;
+    z-index: 100;
+    color: white;
+    .nav{
+      font-size: 19px;
+      text-align: center;
+      a {
+          text-decoration: none;
+          padding: 10px 0px;
+          text-transform: uppercase;
+          margin-bottom: -7px;
+          color: #dcd9d9;
+          &.selected {
+              border-bottom: solid 3px orange;
+              color: white;
+          }
+        }
+    }
+  }

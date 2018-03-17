@@ -1,6 +1,7 @@
 import React from 'react';
 import Rupee from  'react-icons/lib/fa/inr';
 import DeleteIcon from 'react-icons/lib/md/delete';
+import './Payment.scss'
 
 
 function Payment(props){

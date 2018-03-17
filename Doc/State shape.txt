@@ -24,5 +24,6 @@ members:{
 	isFetching:false,
 	items:[]
 },
-memberFilter:"All"
+memberFilter:"All",
+show
 }
